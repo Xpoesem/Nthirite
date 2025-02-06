@@ -1,23 +1,5 @@
-name: Build Plugin
-on: [push]
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Set up Java
-        uses: actions/setup-java@v3
-        with:
-          distribution: 'temurin'
-          java-version: '17'
-
-      - name: Build with Maven
-        run: mvn package
-
-      - name: Upload Plugin
-        uses: actions/upload-artifact@v3
-        with:
-          name: NetheriteLimiter
-          path: target/*.jar
+name: NetheriteLimiter
+main: your.plugin.package.NetheriteLimiter  # Update with your package name
+version: 1.0
+api-version: 1.20
+description: Limits Netherite Armor to only one set in the world.
