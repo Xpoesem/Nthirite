@@ -1,23 +1,27 @@
-name: Build Plugin
-on: [push]
+name: Build Plugin and Upload to S3
+on:
+  push:
+    branches:
+      - main
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-
       - name: Set up Java
         uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
           java-version: '17'
-
       - name: Build with Maven
-        run: mvn package
-
-      - name: Upload Plugin
-        uses: actions/upload-artifact@v3
+        run: mvn clean package
+      - name: Upload to S3
+        uses: jakejarvis/s3-sync-action@v0.5.0
         with:
-          name: NetheriteLimiter
-          path: target/*.jar
+          s3_bucket: YOUR_S3_BUCKET_NAME
+          s3_endpoint: s3.amazonaws.com
+          local_dir: target/
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
