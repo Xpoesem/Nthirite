@@ -1,5 +1,5 @@
 name: NetheriteLimiter
-main: your.plugin.package.NetheriteLimiter  # Update with your package name
+main: com.michael.netheritelimiter.NetheriteLimiter  # Replace this with your actual package name and class
 version: 1.0
 api-version: 1.20
 description: Limits Netherite Armor to only one set in the world.
