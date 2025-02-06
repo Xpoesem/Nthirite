@@ -17,7 +17,7 @@ jobs:
       - name: Build with Maven
         run: mvn clean package
       - name: Upload Plugin JAR
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v2  # Use version 2 here
         with:
           name: NetheriteLimiter
           path: target/*.jar
